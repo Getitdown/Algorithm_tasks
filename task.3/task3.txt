@@ -1,0 +1,27 @@
+// Напишите рекурсивный метод, который выводит на экран числа Фибоначчи до N-ого элемента.
+
+
+function fibonachi(num){
+    if(num === 1) return 1;
+    if(num <= 0) return 0;
+
+    return fibonachi(num - 1) + fibonachi(num - 2)
+
+}
+
+console.log(fibonachi(8)) 
+
+
+
+// Напишите рекурсивный метод, который проверяет, является ли строка палиндромом.
+
+function isPalindrome(str) {
+    if ( str.length == 0 || str.length == 1) {
+        return true;
+    }
+    if ( str[0] !== str[str.length - 1]){
+        return false;
+    }
+    return isPalindrome(str.slice(1, -1))
+}
+console.log(isPalindrome('radar'))
