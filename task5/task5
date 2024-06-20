@@ -1,0 +1,93 @@
+// 1. У вас есть список из n элементов, которые представляют собой оценки студентов по математике. 
+// Вам нужно отсортировать этот список в порядке убывания оценок с использованием алгоритма сортировки 
+// Merge sort. Для решения этой задачи напишите функцию, которая принимает на вход список оценок и 
+// возвращает новый список, отсортированный в порядке убывания.
+
+
+function sortArr(arr) {
+    if(arr.length <= 1){
+        return arr;
+    }
+
+       const mid = Math.floor(arr.length / 2)
+       const leftArr = arr.slice(0, mid)
+       const rightArr = arr.slice(mid)
+
+       const sortedLeft = sortArr(leftArr)
+       const sortedRight = sortArr(rightArr)
+
+       return mergeArr(sortedLeft, sortedRight)
+}
+
+function mergeArr(leftArr, rightArr){
+        const result = [];
+        while (leftArr.length && rightArr.length) {
+            if (leftArr[0] > rightArr[0]) {
+                result.push(leftArr.shift());
+            } else {
+                result.push(rightArr.shift());
+            }
+        }
+
+    return result.concat(leftArr).concat(rightArr)
+}
+const myArr = [3, 8, 1, 9, 4, 2, 7, 6, 5]
+const sortedArr = sortArr(myArr)
+console.log(sortedArr)
+
+// 2. Дан массив объектов типа Person, который содержит поля name (тип String) и age (тип int). 
+// Необходимо отсортировать этот массив по возрасту в порядке убывания, используя алгоритм Merge sort.
+
+function mergeSortFunction(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    const mid = Math.floor(arr.length / 2);
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid);
+
+    const sortedLeft = mergeSortFunction(left);
+    const sortedRight = mergeSortFunction(right);
+
+    return mergePerson(sortedLeft, sortedRight);
+}
+
+function mergePerson(left, right) {
+    const result = [];
+    while (left.length && right.length) {
+        if (left[0].age > right[0].age) {
+            result.push(left.shift());
+        } else {
+            result.push(right.shift());
+        }
+    }
+
+    return result.concat(left).concat(right);
+}
+
+
+let people = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 20 },
+    { name: "Charlie", age: 30 },
+    { name: "David", age: 35 },
+    { name: "Eve", age: 28 }
+];
+
+const sortedPeople = mergeSortFunction(people);
+console.log(sortedPeople);
+
+
+//3. Напишите рекурсивный метод, который проверяет, является ли строка палиндромом.
+
+function isPalindrome(str) {
+    if ( str.length == 0 || str.length == 1) {
+        return true;
+    }
+    if ( str[0] !== str[str.length - 1]){
+        return false;
+    }
+    return isPalindrome(str.slice(1, -1))
+}
+console.log(isPalindrome('radar'))
